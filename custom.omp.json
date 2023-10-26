@@ -1,0 +1,94 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#FCA17D",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "properties": {
+          },
+          "style": "diamond",
+          "template": "<#fff>{{ .Icon }}</>",
+          "type": "os"
+        },
+        {
+          "background": "#FCA17D",
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "style": "full"
+          },
+          "style": "powerline",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "background": "#DA627D",
+          "foreground": "#ffffff",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "template": " <#fff><b>\uf64f</b></> {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        },
+        {
+          "background": "#FF9248",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FCA17D{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}",
+            "{{ if gt .Ahead 0 }}#89d1dc{{ end }}",
+            "{{ if gt .Behind 0 }}#f17c37{{ end }}"
+          ],
+          "foreground": "#ffffff",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "powerline",
+          "template": " <#000>{{ .UpstreamIcon }}</>{{ .HEAD }}{{ .BranchStatus }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          "background": "#8be9fd",
+          "foreground": "#000",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "powerline",
+          "template": " {{.FormattedMs}} ",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        { 
+          "foreground": "#cd5e42",
+          "style": "powerline",
+          "template": "\ue3bf ",
+          "type": "root"
+        },
+        {
+          "foreground": "#ffafd2",
+          "style": "powerline",
+          "template": " <#45F1C2><b>\u26a1</b></>{{ .UserName }} <#00c7fc>\ue285</>",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    } 
+  ],
+  "final_space": true,
+  "version": 2  
+}
